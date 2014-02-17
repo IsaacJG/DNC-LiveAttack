@@ -11,13 +11,20 @@ import com.ijg.darklight.sdk.core.IssueData;
 
 /**
  * Triggers are subclassed from this, and implement the {@link #isTriggered()} functions
+ *
+ * @author Isaac Grant
  */
 public abstract class Trigger {
+    private static int id = 0;
+
     // Use IssueData because it already exists, does what is needed here
     private IssueData data;
 
-    protected Trigger(String name, String description) {
-        data = new IssueData(name, description);
+    /**
+     * @param description What to disallow in order to prevent the trigger from being activated
+     */
+    protected Trigger(String description) {
+        data = new IssueData("Trigger" + Trigger.id++, description);
     }
 
     /**

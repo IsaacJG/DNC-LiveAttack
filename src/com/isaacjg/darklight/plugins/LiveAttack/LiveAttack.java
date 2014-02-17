@@ -1,5 +1,6 @@
 package com.isaacjg.darklight.plugins.LiveAttack;
 
+import com.ijg.darklight.sdk.core.LiveAttackAccessHandler;
 import com.ijg.darklight.sdk.core.Plugin;
 
 /*
@@ -28,13 +29,24 @@ import com.ijg.darklight.sdk.core.Plugin;
  */
 
 public class LiveAttack extends Plugin {
+    private Trigger[] triggers;
+    private LiveAttackAccessHandler accessHandler;
 
     public LiveAttack(LiveAttackAccessHandler accessHandler) {
         super(accessHandler);
+        this.accessHandler = accessHandler; // May be redundant, but keeping it here just to be safe
+    }
+
+    /**
+     * @param triggers Initalized Trigger objects to use
+     */
+    public void setTriggers(Trigger[] triggers) {
+        this.triggers = triggers;
     }
 
     @Override
     protected void start() {
+        accessHandler.injectTriggers(triggers);
     }
 
     @Override

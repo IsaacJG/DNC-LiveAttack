@@ -38,6 +38,5 @@ public class LiveAttackAccessHandler extends AccessHandler {
             combinedIssues[i] = savedIssues[i-triggers.length];
         }
         engine.issueHandler = new IssueHandler(combinedIssues);
-        super.checkIssues();
     }
 }
